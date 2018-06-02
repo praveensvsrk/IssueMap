@@ -12,7 +12,7 @@ class Issue(models.Model):
     severity = models.IntegerField()
     creation_date = models.DateField()
     username = models.ForeignKey(User, on_delete=models.CASCADE)
-
+    image = models.ImageField(upload_to='Images/', default='Images/None/no-img.jpg')
 
     def __str__(self):
         return self.id
