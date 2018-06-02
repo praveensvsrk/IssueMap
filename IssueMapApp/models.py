@@ -11,7 +11,7 @@ class Issue(models.Model):
     department = models.CharField(max_length=20)
     severity = models.IntegerField()
     creation_date = models.DateField()
-    username = models.ForeignKey(User)
+    username = models.ForeignKey(User, on_delete=models.CASCADE)
 
 
     def __str__(self):
