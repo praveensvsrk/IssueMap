@@ -19,11 +19,18 @@ class IssueList(generics.ListAPIView):
         min_long = cur_long - offset
         max_long = cur_long + offset
 
+        print(min_lat, min_long, max_lat, max_long)
+
         return Issue.objects.filter(
             Q(latitude__gte=min_lat)
             & Q(latitude__lte=max_lat)
-            & Q(latitude__gte=min_long)
-            & Q(latitude__lte=max_long))
+            & Q(longitude__gte=min_long)
+            & Q(longitude__lte=max_long))
+
+
+class NewIssue(generics.ListCreateAPIView):
+    queryset = Issue.objects.all()
+    serializer_class = IssueSerializer
 
 
 class IssueDetail(generics.RetrieveUpdateAPIView):

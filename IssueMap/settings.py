@@ -25,7 +25,7 @@ SECRET_KEY = 'g$pvp-*$55*0pxb)3y^ib^b(5umlh0#0+p14ts5ajem4tk#wyp'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['80ae51a6.ngrok.io', 'localhost:8000', 'localhost']
 
 
 # Application definition
@@ -141,3 +141,13 @@ REST_FRAMEWORK = {
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+REST_FRAMEWORK = {
+
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+        # ...
+    )
+
+    # ...
+}
