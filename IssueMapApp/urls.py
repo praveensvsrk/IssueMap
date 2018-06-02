@@ -7,4 +7,6 @@ from IssueMapApp import views
 
 urlpatterns = [
     path('home/', views.index),
+    path('issuelist', views.IssueList.as_view()),
+    path('issuelist/<int:id>', views.IssueDetail.as_view())
 ]
