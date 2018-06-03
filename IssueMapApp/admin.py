@@ -6,4 +6,4 @@ from .models import *
 
 
 admin.site.register(Issue)
-
+admin.site.register(Department)

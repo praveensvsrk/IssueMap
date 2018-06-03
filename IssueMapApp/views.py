@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.db.models import Q
-from IssueMapApp.models import Issue
-from IssueMapApp.serializers import IssueSerializer
+from IssueMapApp.models import *
+from IssueMapApp.serializers import IssueSerializer, DepartmentSerializer
 from rest_framework import generics
 
 
@@ -37,6 +37,9 @@ class IssueDetail(generics.RetrieveUpdateAPIView):
     queryset = Issue.objects.all()
     serializer_class = IssueSerializer
 
+class DepartmentList(generics.ListCreateAPIView):
+    queryset = Department.objects.all()
+    serializer_class = DepartmentSerializer
 
 def index(request):
     return HttpResponse("hello")

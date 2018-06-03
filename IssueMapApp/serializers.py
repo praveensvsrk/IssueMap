@@ -64,8 +64,13 @@ class IssueSerializer(serializers.ModelSerializer):
                   'latitude', 'description',
                   'department', 'severity',
                   'creation_date', 'username',
-                  'image')
+                  'image', 'tweet_id', 'status')
 
     def create(self, validated_data):
         return super().create(validated_data)
 
+class DepartmentSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Department
+        fields = ('id', 'name', 'twitter_handles')
