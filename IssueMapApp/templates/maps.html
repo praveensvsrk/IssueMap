@@ -1,12 +1,14 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <!-- Favicons -->
-    <link rel="apple-touch-icon" href="../assets/img/apple-icon.png">
+    <link rel="apple-touch-icon" href="/static/assets/img/apple-icon.png">
     <link rel="icon" href="/static/assets/img/favicon.png">
     <title>
         MyCity
@@ -135,27 +137,54 @@
     </div>
 </body>
 <!--   Core JS Files   -->
-<script src="../assets/js/core/jquery.min.js"></script>
-<script src="../assets/js/core/popper.min.js"></script>
-<script src="../assets/js/bootstrap-material-design.js"></script>
-<script src="../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
-<!-- Google Map Plugin -->
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCYIbnV0n0om8GjvNI59FEyE5Ho4-N52O0"></script>
+<script src="/static/assets/js/core/jquery.min.js"></script>
+<script src="/static/assets/js/core/popper.min.js"></script>
+<script src="/static/assets/js/bootstrap-material-design.js"></script>
+<script src="/static/assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
 <!--  Charts Plugin, full documentation here: https://gionkunz.github.io/chartist-js/ -->
-<script src="../assets/js/plugins/chartist.min.js"></script>
+<script src="/static/assets/js/plugins/chartist.min.js"></script>
 <!-- Library for adding dinamically elements -->
-<script src="../assets/js/plugins/arrive.min.js" type="text/javascript"></script>
+<script src="/static/assets/js/plugins/arrive.min.js" type="text/javascript"></script>
 <!--  Notifications Plugin, full documentation here: http://bootstrap-notify.remabledesigns.com/    -->
-<script src="../assets/js/plugins/bootstrap-notify.js"></script>
+<script src="/static/assets/js/plugins/bootstrap-notify.js"></script>
 <!-- Material Dashboard Core initialisations of plugins and Bootstrap Material Design Library -->
-<script src="../assets/js/material-dashboard.js?v=2.0.0"></script>
+<script src="/static/assets/js/material-dashboard.js?v=2.0.0"></script>
 <!-- demo init -->
-<script src="../assets/js/plugins/demo.js"></script>
+<script src="/static/assets/js/plugins/demo.js"></script>
 
 <script>
-    $(document).ready(function() {
-        demo.initGoogleMaps();
-    });
+
+
+    function initMap() {
+      var bounds = new google.maps.LatLngBounds();
+
+      var cur = {lat: 17.344, lng: 78.336};
+
+      var map = new google.maps.Map(
+          document.getElementById('map'), {zoom: 4, center: cur});
+
+      var marker = new google.maps.Marker({position: cur, map: map});
+
+      $.getJSON( "http://153eaebe.ngrok.io/issue/issuelist?lat=15&long=78&offset=10", function( data ) {
+          var items = [];
+          $.each( data, function( key, val ) {
+                pos = {lat: val['latitude'], lng: val['longitude']};
+                var marker = new google.maps.Marker({position: pos, map: map});
+                marker.addListener('click', function() {
+                    window.location.replace("http://153eaebe.ngrok.io/issue/issue_detail?id=" + val['id'])
+                });
+
+
+          });
+        });
+    }
+
+
 </script>
+
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCYIbnV0n0om8GjvNI59FEyE5Ho4-N52O0&callback=initMap">
+    </script>
+
 
 </html>

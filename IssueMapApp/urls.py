@@ -15,7 +15,8 @@ urlpatterns = [
     path('dashboard', TemplateView.as_view(template_name='dashboard.html')),
     path('user', TemplateView.as_view(template_name='user.html')),
     path('table', TemplateView.as_view(template_name='table.html')),
-    path('maps', TemplateView.as_view(template_name='maps.html')),
+    path('maps', views.maps),
+    path('issue_detail', views.issuedetailview),
     path('notifications', TemplateView.as_view(template_name='notifications.html')),
 ]
 

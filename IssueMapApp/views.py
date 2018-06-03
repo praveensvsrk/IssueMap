@@ -1,5 +1,7 @@
 from django.http import HttpResponse
 from django.db.models import Q
+from django.shortcuts import render
+
 from IssueMapApp.models import *
 from IssueMapApp.serializers import IssueSerializer, DepartmentSerializer
 from rest_framework import generics
@@ -44,4 +46,15 @@ class DepartmentList(generics.ListCreateAPIView):
 def index(request):
     return HttpResponse("hello")
 
+
+def maps(request):
+    if request.method == 'GET':
+        print(True)
+        return render(request, 'maps.html', {'issues': Issue.objects.all()})
+
+
+def issuedetailview(request):
+
+   list = Issue.objects.get(id = request.GET.get('id'))
+   return render(request, 'issue_detail.html', {'issue': list})
 
