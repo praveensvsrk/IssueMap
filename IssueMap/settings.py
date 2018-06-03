@@ -69,6 +69,12 @@ TEMPLATES = [
     },
 ]
 
+PROJECT_DIR = os.path.dirname(__file__)
+
+TEMPLATE_DIRS = (
+    os.path.join(PROJECT_DIR, '../templates'),
+)
+
 WSGI_APPLICATION = 'IssueMap.wsgi.application'
 
 
@@ -126,9 +132,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static/assets"),
+    os.path.join(BASE_DIR, "/static/"),
 ]
-STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
