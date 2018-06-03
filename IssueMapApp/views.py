@@ -43,3 +43,5 @@ class DepartmentList(generics.ListCreateAPIView):
 
 def index(request):
     return HttpResponse("hello")
+
+

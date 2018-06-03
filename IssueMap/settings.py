@@ -125,11 +125,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
-
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"),
-    '/static/',
+    os.path.join(BASE_DIR, "static/assets"),
 ]
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
