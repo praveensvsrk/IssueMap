@@ -1,1 +1,5 @@
 .idea
+IssueMap/__pycache__
+IssueMapApp/__pycache__
+IssueMap/__pycache__/*
+IssueMapApp/__pycache__/*
